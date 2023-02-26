@@ -1,7 +1,6 @@
 import React, { useLayoutEffect, useRef } from "react";
 import { gsap } from "gsap";
 import ImageHome from "../../components/frameImage/image_home";
-import { ScrollTrigger } from "gsap/all";
 
 const SectionSecond = () => {
     const textHeadRef = useRef();
