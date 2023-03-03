@@ -1,44 +1,33 @@
-import React, { useLayoutEffect, useRef } from "react";
-import { gsap } from "gsap";
+import React, { useContext, useEffect, useLayoutEffect, useRef, useState } from "react";
+import { Context } from "../../store";
+import { motion } from "framer-motion";
 
 const SectionThrid = () => {
     const contentRef = useRef(null);
     const textHeadRef = useRef(null);
-    useLayoutEffect(() => {
 
-            const tl = gsap.timeline({
-                scrollTrigger: {
-                    trigger: contentRef.current,
-                    start: "top 50%",
-                    end: "50% 75%",
-                    markers: true,
-                },
-            });
+    const { cursor, handleCursorHit, handleCursorNotHit } = useContext(Context);
+    const [targetElement, setTargetElement] = useState({top:0, bottom: 0})
 
-            // const text_split = [...textHeadRef.current.childNodes].filter(
-            //     (el) => el.localName != "br" && el.nodeName != "#text"
-            // );
-                
-            tl.to(gsap.utils.toArray(textHeadRef.current.childNodes), {
-                y: 80,
-                duration: 1.5,
-                ease: "back",
-                stagger: 0.2,
-            });
-
-            return () =>  tl.scrollTrigger.kill()
+    useEffect(() => {
+        const topic = textHeadRef.current;
+        const target = topic.getBoundingClientRect()
+        setTargetElement({top:target.top, bottom: target.top + target.height})
     }, []);
 
     return (
-        <div className="w-full lg:h-[1200px] border-2" ref={contentRef}>
-            <h2
+        <div className="w-full lg:h-[1200px] " ref={contentRef}>
+            <motion.h2
                 className="text-8xl lg:w-[80%] lg:mx-auto text-white tracking-[7.5px]"
                 ref={textHeadRef}
+                onMouseEnter={handleCursorHit}
+                onMouseLeave={handleCursorNotHit}
             >
-                <span className="font-bold overflow-hidden">Lorem ipsum</span> dolor!
+                <span className="font-bold overflow-hidden">Lorem ipsum</span>{" "}
+                dolor!
                 <br />
                 <span className="font-bold overflow-hidden"> ipsum </span>dolor!
-            </h2>
+            </motion.h2>
             <div className=" lg:mt-[60px] lg:w-[80%] lg:mx-auto border-b-[1px] bg-white"></div>
             <div className="flex text-white lg:w-[80%] lg:mx-auto lg:pt-[50px]">
                 <div className="basis-[40%]">
