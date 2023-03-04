@@ -1,4 +1,5 @@
 import React, { useEffect, useState, useRef, useMemo } from "react";
+import {v4 as keysID} from 'uuid'
 import { motion } from "framer-motion";
 import ButtonBasic from "../../components/buttons/buttonBasic";
 import CircleText from "../../components/texts/circleText";
@@ -92,9 +93,7 @@ const SectionOne = () => {
                                     <CircleText
                                         char={el}
                                         index={index}
-                                        key={`${el}-${Math.floor(
-                                            Math.random() * 1000
-                                        )}-index`}
+                                        key={keysID()}
                                         deg={`rotate(${index * 9}deg)`}
                                     />
                                 );

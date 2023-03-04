@@ -1,4 +1,10 @@
-import React, { useContext, useEffect, useLayoutEffect, useRef, useState } from "react";
+import React, {
+    useContext,
+    useEffect,
+    useLayoutEffect,
+    useRef,
+    useState,
+} from "react";
 import { Context } from "../../store";
 import { motion } from "framer-motion";
 
@@ -7,21 +13,22 @@ const SectionThrid = () => {
     const textHeadRef = useRef(null);
 
     const { cursor, handleCursorHit, handleCursorNotHit } = useContext(Context);
-    const [targetElement, setTargetElement] = useState({top:0, bottom: 0})
+    // const [targetElement, setTargetElement] = useState({top:0, bottom: 0})
 
-    useEffect(() => {
-        const topic = textHeadRef.current;
-        const target = topic.getBoundingClientRect()
-        setTargetElement({top:target.top, bottom: target.top + target.height})
-    }, []);
+    // const { scrollY, scrollX } = useScroll();
+
+    // useEffect(() => {
+    //     window.addEventListener("pointerenter")
+    // }, []);
 
     return (
         <div className="w-full lg:h-[1200px] " ref={contentRef}>
             <motion.h2
                 className="text-8xl lg:w-[80%] lg:mx-auto text-white tracking-[7.5px]"
+                id="text-topic"
                 ref={textHeadRef}
-                onMouseEnter={handleCursorHit}
-                onMouseLeave={handleCursorNotHit}
+                onPointerEnter={handleCursorHit}
+                onPointerLeave={handleCursorNotHit}
             >
                 <span className="font-bold overflow-hidden">Lorem ipsum</span>{" "}
                 dolor!
