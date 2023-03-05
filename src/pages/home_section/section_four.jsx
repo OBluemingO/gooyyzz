@@ -3,60 +3,52 @@ import { motion, useDragControls } from "framer-motion";
 import debounce from "lodash/debounce";
 
 const SectionFour = () => {
-    const controls = useDragControls();
-    const elementSplitRef = useRef(null);
-    const containerRef = useRef(null);
-    const [size, setSize] = useState({ left: 50, right: 50 });
+    const [leftPaneWidth, setLeftPaneWidth] = useState("50%");
+    const [drag, setDrag] = useState(false);
+    const wrapRef = useRef(null);
 
-    const handleDrage = () => {
-        const pos = elementSplitRef.current.getBoundingClientRect().x;
-        const left = (pos / 1440) * 100;
-        const right = 100 - (pos / 1440) * 100;
-        setSize({ left: left - 0.8, right: right + 0.8 });
-    };
+    useEffect(() => {
+        if (drag) {
+            const movePointer = (event) => {
+                // const containerWidth = event.;
+                const containerWidth =
+                    wrapRef.current.getBoundingClientRect().width;
+                const mouseX = event.clientX
+                const newLeftPaneWidth = `${((mouseX / containerWidth) * 100) - 16}%`;
+                console.log(newLeftPaneWidth,'======== new left')
+                
+                setLeftPaneWidth(newLeftPaneWidth);
+            };
 
-    const delayedDrage = useCallback(
-        debounce(() => handleDrage(), 750),
-        []
-    );
-    console.log(size);
+            wrapRef.current.addEventListener("pointermove", movePointer);
+
+            return () =>
+                wrapRef.current.removeEventListener("pointermove", movePointer);
+        }
+    }, [drag]);
+
     return (
         <div
-            className="flex h-screen w-full border-2 relative "
-            ref={containerRef}
+            ref={wrapRef}
+            className="w-full h-screen overflow-hidden flex relative"
         >
-            <motion.div
-                layout
-                className="basis-1/2 bg-amber-400"
+            <div
+                className="w-[50px] h-[50px] rounded bg-green-500 absolute -translate-x-1/2 top-1/2 -translate-y-1/2"
+                style={{ left: leftPaneWidth }}
+                onPointerDown={() => setDrag(true)}
+                onPointerUp={() => setDrag(false)}
+            ></div>
+            <div
+                style={{
+                    width: leftPaneWidth,
+                }}
+                className="bg-black  border-r-2 overflow-hidden h-full"
             >
-                <div className="w-[300px] h-[200px] bg-green-300"></div>
-            </motion.div>
-            <motion.div
-                layout
-                className="basis-1/2 bg-red-800"
-            ></motion.div>
-            {/* <motion.div
-                className="basis-1/2 bg-red-800"
-                initial={{ width: 50 }}
-                style={{ width: `${size.right}%` }}
-                layout
-            ></motion.div> */}
-
-            <motion.div
-                className="border-2 border-white h-full w-[2px] absolute left-1/2 translate-x-1/2 grid place-items-center"
-                drag="x"
-                dragControls={controls}
-                dragConstraints={{ left: -580, right: 580 }}
-                dragMomentum={false}
-                onDragEnd={delayedDrage}
-            >
-                <motion.div
-                    initial={{ translateX: "-50%" }}
-                    whileTap={{ scale: 0.9, translateX: "-50%" }}
-                    ref={elementSplitRef}
-                    className="rounded-full bg-white w-[50px] h-[50px] outline outline-[10px] outline-stone-600/50"
-                ></motion.div>
-            </motion.div>
+                {/* Content for left pane */}
+            </div>
+            <div className="bg-green-700 h-full overflow-hidden flex-1">
+                {/* Content for right pane */}
+            </div>
         </div>
     );
 };
