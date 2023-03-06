@@ -10,6 +10,7 @@ function App() {
     useFollowPointer(ref);
     const {
         cursor,
+        cursorDown,
         pointer: { x, y },
     } = useContext(Context);
 
@@ -19,16 +20,17 @@ function App() {
             <motion.div
                 className="w-[50px] h-[50px] rounded-full bg-[#fd7702] fixed z-[500] pointer-events-none"
                 ref={ref}
+                layout
                 animate={{
                     x,
                     y,
-                    height: cursor ? "100px" : "50px",
-                    width: cursor ? "100px" : "50px",
+                    height: cursor ? "100px" : cursorDown ? "15px" : "50px",
+                    width: cursor ? "100px" : cursorDown ? "50px" : "50px",
                 }}
                 transition={{
                     type: "spring",
                     stiffness: 80,
-                    damping: 15
+                    damping: 15,
                 }}
             ></motion.div>
             <Home />
