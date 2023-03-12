@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Html } from "@react-three/drei";
+
 const BoxMesh = () => {
     const [size, set] = useState(0.5);
     const [hidden, setVisible] = useState(false);
@@ -19,7 +20,7 @@ const BoxMesh = () => {
                 occlude
                 onOcclude={setVisible}
             >
-                <span>Size</span>
+                <span className="hover:text-black">Size</span>
                 {/* <Slider style={{ width: 100 }} min={0.5} max={1} step={0.01} value={size} onChange={set} /> */}
             </Html>
         </mesh>

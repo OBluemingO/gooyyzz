@@ -1,4 +1,5 @@
 import Navbar from "./components/bars/navbar";
+import ContactUs from "./components/bars/contactUs";
 import { useFollowPointer } from "./hooks/useFollowPointer";
 import Home from "./pages/home";
 import { useRef, useState, useContext } from "react";
@@ -34,6 +35,7 @@ function App() {
                 }}
             ></motion.div>
             <Home />
+            <ContactUs />
         </div>
     );
 }

@@ -53,7 +53,7 @@ const SectionFour = () => {
     return (
         <div
             ref={wrapRef}
-            className="w-full h-screen overflow-hidden flex relative"
+            className="w-full h-screen max-h-[798px] overflow-hidden flex relative"
         >
             <motion.div
                 className="w-[50px] h-[50px] z-50 rounded-full bg-green-500 absolute -translate-x-1/2 top-1/2 -translate-y-1/2"
