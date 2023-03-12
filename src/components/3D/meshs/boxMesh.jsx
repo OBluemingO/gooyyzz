@@ -1,28 +1,25 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { Html } from "@react-three/drei";
+import { useFrame } from "@react-three/fiber";
 
-const BoxMesh = () => {
+const BoxMesh = ({ red }) => {
     const [size, set] = useState(0.5);
-    const [hidden, setVisible] = useState(false);
+    const [stopAnimation, setStopAnimation] = useState(false);
+    const boxMeshRef = useRef();
+    useFrame(() => {
+        if (!stopAnimation) {
+            boxMeshRef.current.rotation.y += 0.002;
+            boxMeshRef.current.rotation.x += 0.002;
+        }
+    });
     return (
-        <mesh scale={1}>
-            <boxGeometry />
-            <meshStandardMaterial />
-            <Html
-                style={{
-                    transition: "all 0.2s",
-                    opacity: hidden ? 0 : 1,
-                    transform: `scale(${hidden ? 0.5 : 1})`,
-                }}
-                distanceFactor={1.5}
-                position={[0, 0, 1]}
-                // transform
-                occlude
-                onOcclude={setVisible}
-            >
-                <span className="hover:text-black">Size</span>
-                {/* <Slider style={{ width: 100 }} min={0.5} max={1} step={0.01} value={size} onChange={set} /> */}
-            </Html>
+        <mesh
+            rotation={[1, 0.8, 0]}
+            position={[0, -0.1, 0]}
+            ref={boxMeshRef}
+        >
+            <boxBufferGeometry />
+            <meshStandardMaterial color={red ? [1, 0, 0] : [1, 1, 1]} />
         </mesh>
     );
 };

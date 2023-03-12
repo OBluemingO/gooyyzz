@@ -78,11 +78,12 @@ const SectionFour = () => {
             </div>
             <div className="h-full overflow-hidden flex-1 ">
                 <div
-                    className="border-2 border-red-600 text-5xl absolute left-0 z-1 h-full"
+                    className="border-2 border-white text-5xl absolute left-0 z-1 h-full"
                     style={{ width: widthContainer }}
                 >
                     <div className=" w-full h-full">
                         {/* 3d product */}
+                        <ProductShirt red={true} />
                     </div>
                 </div>
             </div>
