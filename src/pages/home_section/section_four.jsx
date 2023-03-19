@@ -56,7 +56,16 @@ const SectionFour = () => {
             className="w-full h-screen max-h-[798px] overflow-hidden flex relative"
         >
             <motion.div
-                className="w-[50px] h-[50px] z-50 rounded-full bg-green-500 absolute -translate-x-1/2 top-1/2 -translate-y-1/2"
+                className="w-[50px] h-[50px] z-50 rounded-full 
+                bg-gray-200 absolute -translate-x-1/2 top-1/2 -translate-y-1/2"
+                style={{ left: leftPaneWidth }}
+                onPointerDown={() => setDrag(true)}
+                initial={{ translateX: "-50%" }}
+                animate={{ scale: drag ? 2 : 1 }}
+            ></motion.div>
+            <motion.div
+                className="w-[4px] h-screen z-[50] top-0
+                bg-gray-200 absolute -translate-x-1/2 -translate-y-1/2"
                 style={{ left: leftPaneWidth }}
                 onPointerDown={() => setDrag(true)}
                 initial={{ translateX: "-50%" }}
