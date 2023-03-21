@@ -1,19 +1,27 @@
 import { Canvas } from "@react-three/fiber";
-import { OrbitControls, Plane, PresentationControls } from "@react-three/drei";
+import {
+    Html,
+    OrbitControls,
+    Plane,
+    PresentationControls,
+} from "@react-three/drei";
 import BoxMesh from "../meshs/boxMesh";
 import { ShirtMesh } from "../meshs/shirtMesh";
+import { useState } from "react";
 
-const ProductShirt = ({ red }) => {
+const ProductShirt = ({ red, pos }) => {
     return (
-        <Canvas className="bg-light-purple" camera={{ fov: 25 }}>
-            <ambientLight intensity={0.5} />
-            <pointLight position={[10, 10, 5]} />
-            <pointLight position={[-10, -10, -10]} />
-            {/* <BoxMesh red={red} /> */}
+        <div className="h-full w-full relative">
+            <Canvas className="bg-light-purple" camera={{ fov: 25 }}>
+                <ambientLight intensity={0.5} />
+                <pointLight position={[10, 10, 5]} />
+                <pointLight position={[-10, -10, -10]} />
 
-            <ShirtMesh red={red} />
-            <OrbitControls />
-        </Canvas>
+                <ShirtMesh pos={pos} />
+
+                <OrbitControls />
+            </Canvas>
+        </div>
     );
 };
 

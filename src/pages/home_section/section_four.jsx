@@ -81,7 +81,6 @@ const SectionFour = () => {
                     className="border-2 text-white text-5xl absolute left-0 z-10  h-full w-full"
                     style={{ width: widthContainer }}
                 >
-                    {/* 3d product */}
                     <ProductShirt />
                 </div>
             </div>
@@ -91,8 +90,7 @@ const SectionFour = () => {
                     style={{ width: widthContainer }}
                 >
                     <div className=" w-full h-full">
-                        {/* 3d product */}
-                        <ProductShirt red={true} />
+                        <ProductShirt />
                     </div>
                 </div>
             </div>

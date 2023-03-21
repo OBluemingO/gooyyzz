@@ -2,20 +2,18 @@ import React, { useEffect, useState, useRef } from "react";
 import { useGLTF } from "@react-three/drei";
 import { useFrame, useThree } from "@react-three/fiber";
 import gsap from "gsap";
+import _ from "lodash";
 
-export function ShirtMesh({ red }) {
+export function ShirtMesh({pos}) {
     const { nodes, materials } = useGLTF("/public/images/shirt.glb");
 
     const [click, setClick] = useState(false);
-
     const { camera } = useThree();
 
-    // useFrame(() => {
-    //   gsap.to()
-    // })
-
     useEffect(() => {
-        if (click) {
+        console.log(pos,'======= pos')
+        if (pos == 'pocket') {
+            console.log('=== in condition')
             gsap.to(camera.position, {
                 z: 3,
                 y: 3,
@@ -23,7 +21,7 @@ export function ShirtMesh({ red }) {
                 duration: 1,
                 ease: "power3.inOut",
             });
-        } else {
+        } else if(pos == 'back side') {
             gsap.to(camera.position, {
                 z: 6,
                 y: 0,
@@ -32,7 +30,7 @@ export function ShirtMesh({ red }) {
                 ease: "power3.inOut",
             });
         }
-    }, [click]);
+    }, [click, pos]);
 
     const handleClick = () => {
         setClick((prev) => !prev);
