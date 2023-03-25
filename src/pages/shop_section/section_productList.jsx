@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 import { getProductList } from "../../api/shop";
 import ButtonProductlist from "../../components/buttons/buttonProductlist";
 import ProductListCard from "../../components/cards/productListCard";
+import Pagination from "../../components/Pagination/Pagination";
 import { Context } from "../../store";
 
 const SectionProductList = () => {
@@ -24,6 +25,7 @@ const SectionProductList = () => {
         },
     ]);
     const [selectCategorie, setSelectCategorie] = useState(0);
+    const [currentPage, setCurrentPage] = useState(1);
     const { isLoading, handleLoading } = useContext(Context);
 
     const fetchCategorie = async () => {
@@ -63,9 +65,21 @@ const SectionProductList = () => {
                 </div>
             </div>
             <div className="w-full h-full lg:max-w-[1100px] lg:h-[980px] lg:mx-auto grid lg:grid-cols-3 lg:grid-rows-2 lg:gap-8 ">
-                {
-                    Array(6).fill(null).map(( el, index ) => <ProductListCard key={`product-list-card-${index}`} />)
-                }
+                {Array(6)
+                    .fill(null)
+                    .map((el, index) => (
+                        <ProductListCard key={`product-list-card-${index}`} />
+                    ))}
+            </div>
+            <div className="w-full h-full lg:max-w-[1100px] mx-auto lg:mt-[60px]">
+                <Pagination
+                    currentPage={currentPage}
+                    // totalCount={data.length}
+                    // pageSize={PageSize}
+                    totalCount={20}
+                    pageSize={2}
+                    onPageChange={(page) => setCurrentPage(page)}
+                />
             </div>
         </>
     );

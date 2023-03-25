@@ -1,7 +1,5 @@
 import axios from 'axios'
 
-console.log('======',import.meta.env.PUBLIC_API_URL)
-
 const customInstance = axios.create({
   baseURL: import.meta.env.PUBLIC_API_URL,
 })

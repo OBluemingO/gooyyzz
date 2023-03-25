@@ -2,7 +2,7 @@ import { MdFavoriteBorder } from "react-icons/md";
 
 const ProductListCard = () => {
     return (
-        <div className="w-full h-full bg-gray-400 rounded">
+        <div className="w-full h-full bg-gray-400 rounded-[10px] overflow-hidden">
             <div className="relative wrapper-image h-[47%] overflow-hidden">
                 <div className="favorite-icon absolute w-[30px] h-[30x] right-[20px] top-[15px]"><MdFavoriteBorder size={30} /></div>
                 <img
