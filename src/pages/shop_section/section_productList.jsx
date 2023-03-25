@@ -57,6 +57,7 @@ const SectionProductList = () => {
                     {categorie.map((el, index) => (
                         <ButtonProductlist
                             {...el}
+                            key={`Button-Product-list-${index}`}
                             index={index}
                             active={selectCategorie == index}
                             callBackButtonActive={callBackButtonActive}
@@ -64,8 +65,8 @@ const SectionProductList = () => {
                     ))}
                 </div>
             </div>
-            <div className="w-full h-full lg:max-w-[1100px] lg:h-[980px] lg:mx-auto grid lg:grid-cols-3 lg:grid-rows-2 lg:gap-8 ">
-                {Array(6)
+            <div className="w-full h-full lg:max-w-[1100px] lg:h-[1470px] lg:mx-auto grid lg:grid-cols-3 lg:grid-rows-3 lg:gap-8 ">
+                {Array(9)
                     .fill(null)
                     .map((el, index) => (
                         <ProductListCard key={`product-list-card-${index}`} />

@@ -7,6 +7,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Context } from "./store";
 import { BrowserRouter, Routes, Route, Navigate, Link } from "react-router-dom";
 import Shop from "./pages/shop";
+import ProductDetail from "./pages/productDetail";
 
 function App() {
     const ref = useRef(null);
@@ -40,6 +41,7 @@ function App() {
                 <Routes>
                     <Route index element={<Home />} />
                     <Route path="/shop" element={<Shop />} />
+                    <Route path="/shop/:categorie/:productId" element={<ProductDetail />} />
                 </Routes>
             <ContactUs />
             </BrowserRouter>
