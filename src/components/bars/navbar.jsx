@@ -1,13 +1,20 @@
 import React from "react";
 import { AiOutlineSearch } from "react-icons/ai";
 import { BiShoppingBag } from "react-icons/bi";
+import { useNavigate } from "react-router-dom";
 
 const Navbar = () => {
+    const navigate = useNavigate();
+    const handleChangeRoute = (e) => {
+        if(e.target.textContent.toLowerCase() == 'home') navigate(`/`)
+        else navigate(`${e.target.textContent.toLowerCase()}`)
+    }   
+
     return (
         <div className="z-[300] bg-light-purple text-white flex justify-around items-center fixed w-full h-full max-w-[1440px] lg:max-h-[130px]">
             <div className="flex gap-20">
-                <div className="text-2xl">Home</div>
-                <div className="text-2xl">Shop</div>
+                <div className="text-2xl" onClick={handleChangeRoute}>Home</div>
+                <div className="text-2xl" onClick={handleChangeRoute}>Shop</div>
             </div>
             <div className="flex items-center">
                 <div className="flex gap-10">

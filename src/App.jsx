@@ -3,8 +3,10 @@ import ContactUs from "./components/bars/contactUs";
 import { useFollowPointer } from "./hooks/useFollowPointer";
 import Home from "./pages/home";
 import { useRef, useState, useContext, useEffect } from "react";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { Context } from "./store";
+import { BrowserRouter, Routes, Route, Navigate, Link } from "react-router-dom";
+import Shop from "./pages/shop";
 
 function App() {
     const ref = useRef(null);
@@ -17,6 +19,7 @@ function App() {
 
     return (
         <div className="bg-light-purple max-w-[1440px] mx-auto">
+            <BrowserRouter>
             <Navbar />
             <motion.div
                 className="w-[50px] h-[50px] rounded-full bg-[#fd7702] fixed z-[500] pointer-events-none"
@@ -34,8 +37,12 @@ function App() {
                     damping: 15,
                 }}
             ></motion.div>
-            <Home />
+                <Routes>
+                    <Route index element={<Home />} />
+                    <Route path="/shop" element={<Shop />} />
+                </Routes>
             <ContactUs />
+            </BrowserRouter>
         </div>
     );
 }

@@ -4,6 +4,7 @@ const initialState = {
     isScaleCursor: false,
     isScaleCursorDown: false,
     pos: { x: 0, y: 0 },
+    loading: true,
 };
 
 const actions = {
@@ -11,6 +12,7 @@ const actions = {
     NOT_HIT_ELEMENT: "NOT_HIT_ELEMENT",
     MOUSE_SCALE: "MOUSE_SCALE",
     POINTER_POSITION: "POINTER_POSITION",
+    LOADING: "LOADING",
 };
 
 export const Context = createContext(initialState);
@@ -29,6 +31,8 @@ export const Store = ({ children }) => {
                 };
             case actions.POINTER_POSITION:
                 return { ...state, pos: action.newState };
+            case actions.LOADING:
+                return { ...state, loading: action.newState };
             default:
                 throw new Error(`Unhandled action type: ${action.type}`);
         }
@@ -38,6 +42,7 @@ export const Store = ({ children }) => {
         cursor: state.isScaleCursor,
         pointer: state.pos,
         cursorDown: state.isScaleCursorDown,
+        isLoading: state.loading,
         handleCursorScaleDown: (newState) => {
             dispatch({ type: actions.MOUSE_SCALE, newState });
         },
@@ -50,6 +55,9 @@ export const Store = ({ children }) => {
         handlePositionPointer: (newState) => {
             dispatch({ type: actions.POINTER_POSITION, newState });
         },
+        handleLoading: (newState) => {
+            dispatch({ type: actions.LOADING, newState})
+        }
     };
 
     return <Context.Provider value={actionState}>{children}</Context.Provider>;
