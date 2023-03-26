@@ -1,10 +1,31 @@
 import { MdFavoriteBorder } from "react-icons/md";
+import { useNavigate } from "react-router-dom";
 
-const ProductListCard = () => {
+const ProductListCard = ({
+    item_name_string,
+    item_code_string,
+    product_desc_string,
+    price_num,
+    special_price_num,
+    is_deal_bool,
+    stock_product_num,
+    categorie_string,
+    order_num,
+}) => {
+    const navigate = useNavigate();
+    const handleNavigate = () => {
+        navigate({ pathname: `/shop/${categorie_string}/${item_name_string}_${order_num}` });
+    };
+
     return (
-        <div className="w-full h-full bg-gray-400 rounded-[10px] overflow-hidden">
+        <div
+            className="w-full h-full bg-gray-400 rounded-[10px] overflow-hidden"
+            onClick={handleNavigate}
+        >
             <div className="relative wrapper-image h-[47%] overflow-hidden">
-                <div className="favorite-icon absolute w-[30px] h-[30x] right-[20px] top-[15px]"><MdFavoriteBorder size={30} /></div>
+                <div className="favorite-icon absolute w-[30px] h-[30x] right-[20px] top-[15px]">
+                    <MdFavoriteBorder size={30} />
+                </div>
                 <img
                     className="object-cover w-full h-full object-center"
                     src="https://picsum.photos/500/500"
@@ -28,7 +49,7 @@ const ProductListCard = () => {
                 </div>
                 <div className="flex lg:gap-[29px]">
                     <button className="border-none uppercase text-white py-2 px-7 rounded text-center bg-slate-500">
-                        order now
+                        Order Now
                     </button>
                 </div>
             </div>

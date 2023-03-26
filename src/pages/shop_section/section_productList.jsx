@@ -1,32 +1,67 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useCallback, useContext, useEffect, useState } from "react";
 import { getProductList } from "../../api/shop";
 import ButtonProductlist from "../../components/buttons/buttonProductlist";
 import ProductListCard from "../../components/cards/productListCard";
 import Pagination from "../../components/Pagination/Pagination";
 import { Context } from "../../store";
 
-const SectionProductList = () => {
+const SectionProductList = ({ search }) => {
     const [categorie, setCategorie] = useState([
         {
             name: "All",
             total: 24,
+            product: Array(9)
+                .fill({
+                    item_name_string: "mock_item_name",
+                    categorie_string: "Pizza",
+                })
+                .concat(
+                    Array(8).fill({
+                        item_name_string: "mock_item_name",
+                        categorie_string: "Burgger",
+                    })
+                )
+                .concat(
+                    Array(7).fill({
+                        item_name_string: "mock_item_name",
+                        categorie_string: "Chicken",
+                    })
+                ),
         },
         {
             name: "Pizza",
             total: 9,
+            product: Array(9).fill({
+                item_name_string: "mock_item_name",
+                categorie_string: "Pizza",
+            }),
         },
         {
             name: "Burgger",
             total: 8,
+            product: Array(8).fill({
+                item_name_string: "mock_item_name",
+                categorie_string: "Burgger",
+            }),
         },
         {
             name: "Chicken",
             total: 7,
+            product: Array(7).fill({
+                item_name_string: "mock_item_name",
+                categorie_string: "Chicken",
+            }),
         },
     ]);
     const [selectCategorie, setSelectCategorie] = useState(0);
     const [currentPage, setCurrentPage] = useState(1);
     const { isLoading, handleLoading } = useContext(Context);
+
+    const setIndexCategorie =  useCallback(() => {
+        const { categorie: categorieSearch } = search;
+        const index = categorie.findIndex(el => el.name == categorieSearch )
+        if(index > -1) setSelectCategorie(index)
+    }, [search]);
 
     const fetchCategorie = async () => {
         const { data } = await getProductList();
@@ -37,8 +72,9 @@ const SectionProductList = () => {
     useEffect(() => {
         // assume is fetch data
         // fetchCategorie()
-    }, []);
 
+        setIndexCategorie()
+    }, []);
     const callBackButtonActive = (value) => {
         setSelectCategorie(value);
     };
@@ -66,10 +102,14 @@ const SectionProductList = () => {
                 </div>
             </div>
             <div className="w-full h-full lg:max-w-[1100px] lg:h-[1470px] lg:mx-auto grid lg:grid-cols-3 lg:grid-rows-3 lg:gap-8 ">
-                {Array(9)
-                    .fill(null)
+                {categorie[selectCategorie].product
+                    .slice(0, 9)
                     .map((el, index) => (
-                        <ProductListCard key={`product-list-card-${index}`} />
+                        <ProductListCard
+                            {...el}
+                            order_num={index + 1}
+                            key={`product-list-card-${index}`}
+                        />
                     ))}
             </div>
             <div className="w-full h-full lg:max-w-[1100px] mx-auto lg:mt-[60px]">
