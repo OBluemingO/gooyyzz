@@ -1,11 +1,15 @@
+import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import Slider from "react-slick";
 import Breadcrumb from "../components/Breadcrumbs/Breadcrumb";
 import ReviewCart from "../components/cards/reviewCart";
 import StarRate from "../components/start_rate";
+import clsx from "clsx";
+import ProductListCard from "../components/cards/productListCard";
 
 const ProductDetail = () => {
     const { categorie, productId } = useParams();
+    const [selectSheet, setSelectSheet] = useState(0);
 
     const path_breadcrumb = [
         { name: "shop" },
@@ -19,6 +23,14 @@ const ProductDetail = () => {
         autoplay: true,
         autoplaySpeed: 2000,
         dots: true,
+    };
+
+    useEffect(() => {
+        console.log(selectSheet);
+    }, [selectSheet]);
+
+    const handleOnclickButton = (value) => {
+        setSelectSheet(value);
     };
 
     return (
@@ -80,21 +92,62 @@ const ProductDetail = () => {
             </div>
             <section className="lg:mx-auto w-full lg:max-w-[1100px] lg:h-[569px] lg:mt-[100px] text-white ">
                 <div className="grid grid-cols-3 grid-rows-1 w-full lg:max-w-[825px] lg:h-[60px]">
-                    <button className="lg:w-[255px] bg-black capitalize">
+                    <button
+                        className="lg:w-[255px] bg-black capitalize"
+                        onClick={(e) => handleOnclickButton(0)}
+                    >
                         description
                     </button>
-                    <button className="lg:w-[255px] bg-black  capitalize">
+                    <button
+                        onClick={(e) => handleOnclickButton(1)}
+                        className="lg:w-[255px] bg-black  capitalize"
+                    >
                         reviews
                     </button>
-                    <button className="lg:w-[255px] bg-black capitalize">
-                        give your review
-                    </button>
                 </div>
+                <div
+                    className={clsx(
+                        { hidden: selectSheet != 0 },
+                        "w-full h-[500px] transition-all bg-green-700 lg:p-16"
+                    )}
+                >
+                    Lorem, ipsum dolor sit amet consectetur adipisicing elit.
+                    Velit eius quod molestias perferendis sequi sapiente
+                    mollitia fugit non. Nam quas consectetur alias expedita
+                    perspiciatis, animi est harum itaque eius dicta. Lorem,
+                    ipsum dolor sit amet consectetur adipisicing elit. Velit
+                    eius quod molestias perferendis sequi sapiente mollitia
+                    fugit non. Nam quas consectetur alias expedita perspiciatis,
+                    animi est harum itaque eius dicta.
+                </div>
+                <div
+                    className={clsx(
+                        { hidden: selectSheet != 1 },
+                        "w-full h-[500px] transition-all"
+                    )}
+                >
+                    <Slider className="mt-[60px]" {...setting}>
+                        {Array(5)
+                            .fill(null)
+                            .map((el) => (
+                                <ReviewCart />
+                            ))}
+                    </Slider>
+                </div>
+            </section>
+            <p className="lg:mx-auto w-full lg:max-w-[1100px] text-4xl font-bold">
+                Related Items
+            </p>
+            <section className="lg:mx-auto w-full lg:max-w-[1100px] lg:h-[569px] text-white ">
                 <div className="w-full h-[500px]">
                     <Slider className="mt-[60px]" {...setting}>
-                        {
-                            Array(5).fill(null).map(el => <ReviewCart />)
-                        }
+                        {Array(5)
+                            .fill(null)
+                            .map((el) => (
+                                <div className="h-[468px] w-[345px] p-4">
+                                    <ProductListCard />
+                                </div>
+                            ))}
                     </Slider>
                 </div>
             </section>
