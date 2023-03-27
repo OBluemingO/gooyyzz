@@ -92,21 +92,6 @@ const ProductDetail = () => {
                 </div>
                 <div className="w-full h-[500px]">
                     <Slider className="mt-[60px]" {...setting}>
-                        {/* <div className="bg-black w-full h-[372px] lg:max-w-[350px]">
-                            test
-                        </div>
-                        <div className="bg-black w-full h-[372px] lg:max-w-[350px]">
-                            test
-                        </div>
-                        <div className="bg-black w-full h-[372px] lg:max-w-[350px]">
-                            test
-                        </div>
-                        <div className="bg-black w-full h-[372px] lg:max-w-[350px]">
-                            test
-                        </div>
-                        <div className="bg-black w-full h-[372px] lg:max-w-[350px]">
-                            test
-                        </div> */}
                         {
                             Array(5).fill(null).map(el => <ReviewCart />)
                         }
