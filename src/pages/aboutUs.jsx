@@ -1,7 +1,21 @@
 import ButtonAboutUs from "../components/buttons/buttonAboutUs";
 import SectionBanner from "./aboutus_section/section_banner";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { EffectCoverflow } from "swiper";
+import "swiper/css";
+import "swiper/css/effect-coverflow";
+import { useLayoutEffect, useState } from "react";
 
 const AboutUs = () => {
+    const init = Array(5).fill({
+        name: "Dortha",
+        job_type: "Specialist",
+        detail: "Recusandae magnam ut cupiditate.",
+    });
+    const [cheefInfo, setCheefInfo] = useState(init);
+
+    useLayoutEffect(() => {window.scrollTo({top:0})}, []);
+
     return (
         <div>
             <SectionBanner />
@@ -23,7 +37,7 @@ const AboutUs = () => {
                     <ButtonAboutUs>Read More</ButtonAboutUs>
                 </div>
             </div>
-            <div className="lg:mb-[90px] lg:h-[418px] lg:max-w-[1100px] mx-auto border-2 flex lg:gap-[42px]">
+            <div className="lg:mb-[90px] lg:h-[418px] lg:max-w-[1100px] mx-auto flex lg:gap-[42px]">
                 <div className="lg:h-full lg:w-[418px] flex flex-wrap justify-between items-center">
                     {Array(4)
                         .fill(null)
@@ -63,9 +77,53 @@ const AboutUs = () => {
                     <ButtonAboutUs>ORDER NOW</ButtonAboutUs>
                 </div>
             </div>
-            <div className="lg:max-w-[1100px] lg:mx-auto border-2 lg:h-[538px]">
+            <div className="lg:max-w-[1100px] lg:mx-auto  lg:h-[538px]">
                 <h1 className="text-4xl">Our Cheefs & Staff</h1>
-                
+                <Swiper
+                    initialSlide={(cheefInfo.length + 1) / 2 - 1}
+                    effect={"coverflow"}
+                    centeredSlides={true}
+                    slidesPerView={"auto"}
+                    coverflowEffect={{
+                        rotate: 0,
+                        stretch: 0,
+                        depth: 50,
+                        modifier: 2.5,
+                    }}
+                    modules={[EffectCoverflow]}
+                    className="h-[370px]  mt-[47px] "
+                >
+                    {cheefInfo.length > 0
+                        ? cheefInfo.map((el, index) => {
+                              return (
+                                  <SwiperSlide
+                                      className=" w-[300px] mx-4"
+                                      key={`cheef-hero-section-${index}`}
+                                  >
+                                      <div className="w-full h-full bg-red-500 flex flex-col items-center text-center justify-evenly p-4">
+                                          <div className="h-[100px] overflow-hidden w-[100px] rounded-full bg-white">
+                                              <img
+                                                  className="w-full h-full aspect-square "
+                                                  src="http://placeimg.com/640/480"
+                                                  alt={`image-cheef-${index}`}
+                                              />
+                                          </div>
+                                          <div>
+                                              {el.name + " " + (index + 1)}
+                                          </div>
+                                          <div>
+                                              Lorem ipsum dolor sit amet
+                                              consectetur adipisicing elit. Quo
+                                              voluptatem natus autem.
+                                              Repudiandae minima, delectus quod
+                                              similique est
+                                          </div>
+                                      </div>
+                                  </SwiperSlide>
+                              );
+                          })
+                        : null}
+                </Swiper>
             </div>
         </div>
     );

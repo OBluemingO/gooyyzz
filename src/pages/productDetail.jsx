@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useLayoutEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import Slider from "react-slick";
 import Breadcrumb from "../components/Breadcrumbs/Breadcrumb";
@@ -24,6 +24,10 @@ const ProductDetail = () => {
         autoplaySpeed: 2000,
         dots: true,
     };
+
+    useLayoutEffect(() => {
+        window.scrollTo({ top: 0 });
+    }, []);
 
     const handleOnclickButton = (value) => {
         setSelectSheet(value);
