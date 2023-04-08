@@ -8,6 +8,7 @@ import { Context } from "./store";
 import { BrowserRouter, Routes, Route, Navigate, Link } from "react-router-dom";
 import Shop from "./pages/shop";
 import ProductDetail from "./pages/productDetail";
+import AboutUs from "./pages/aboutUs";
 
 function App() {
     const ref = useRef(null);
@@ -42,6 +43,7 @@ function App() {
                     <Route index element={<Home />} />
                     <Route path="/shop" element={<Shop />} />
                     <Route path="/shop/:categorie/:productId" element={<ProductDetail />} />
+                    <Route path="/aboutus" element={<AboutUs />} />
                 </Routes>
             <ContactUs />
             </BrowserRouter>

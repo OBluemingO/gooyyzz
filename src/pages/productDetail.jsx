@@ -25,10 +25,6 @@ const ProductDetail = () => {
         dots: true,
     };
 
-    useEffect(() => {
-        console.log(selectSheet);
-    }, [selectSheet]);
-
     const handleOnclickButton = (value) => {
         setSelectSheet(value);
     };

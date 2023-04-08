@@ -19,7 +19,7 @@ const Navbar = () => {
             <div className="flex items-center">
                 <div className="flex gap-10">
                     <div className="text-2xl">Categories</div>
-                    <div className="text-2xl">About</div>
+                    <div className="text-2xl" onClick={handleChangeRoute}>AboutUs</div>
                 </div>
                 <div className="flex justify-center gap-5 lg:w-[150px]">
                     <div className="">

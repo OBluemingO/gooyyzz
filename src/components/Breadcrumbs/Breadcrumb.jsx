@@ -2,9 +2,11 @@ import React, { useMemo } from "react";
 import { Link } from "react-router-dom";
 
 const Breadcrumb = ({ path }) => {
+
     const path_memo = useMemo(() => {
         return path;
     }, [path]);
+
     return (
         <span className="text-white flex gap-1 absolute lg:top-[160px]">
             {path_memo.map((el, index) => {
