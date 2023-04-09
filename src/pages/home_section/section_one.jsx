@@ -30,9 +30,9 @@ const SectionOne = () => {
 
     return (
         <>
-            <div className="lg:pt-[10%] md:pt-60 flex flex-col items-center justify-center h-screen lg:max-h-[1180px] overflow-hidden relative border-b-2">
+            <div className="lg:pt-[10%] md:pt-60 flex flex-col md:justify-start md:items-end lg:items-center lg:justify-center h-screen lg:max-h-[1180px] overflow-hidden relative border-b-2">
                 <motion.div
-                    className="md:text-[160px] md:pb-[5%] "
+                    className="md:text-[130px] lg:text-[160px] md:pb-[5%] md:pr-[5%] lg:pr-0"
                     initial={{ scale: 0, y: 200, opacity: 1 }}
                     animate={{ scale: 1, y: 0, opacity: 1 }}
                     transition={{ type: "spring", duration: 1.5, delay: 1 }}
@@ -42,7 +42,7 @@ const SectionOne = () => {
                         YYZZ
                     </span>
                 </motion.div>
-                <div className="flex w-full items-end md:pt-20 lg:pt-0 lg:flex-row md:justify-around ">
+                <div className="flex md:h-full w-full md:relative lg:static items-end md:pt-20 lg:pt-0 lg:flex-row md:justify-around ">
                     <motion.div
                         className="w-[530px] lg:h-full hidden lg:block"
                         initial={{ x: 300, opacity: 0 }}
@@ -101,7 +101,7 @@ const SectionOne = () => {
                         </motion.div>
                     </div>
                     <motion.div
-                        className="absolute z-[100] grid place-items-center top-0 left-0 overflow-hidden w-full lg:max-h-[1080px]"
+                        className="absolute md:-bottom-[30%]  lg:h-auto z-[100] md:flex md:items-end lg:grid lg:place-items-center lg:top-0 left-0 overflow-hidden md:w-7/12 lg:w-full lg:max-h-[1080px]"
                         ref={heroRef}
                         initial={{ y: 1000, scale: 0 }}
                         animate={{ y: 0, scale: 1 }}
@@ -115,7 +115,7 @@ const SectionOne = () => {
                     </motion.div>
                 </div>
             </div>
-            <div className="flex justify-evenly items-center lg:hidden w-full">
+            {/* <div className="flex justify-evenly items-center lg:hidden w-full">
                 <motion.div
                     className="w-[530px]"
                     initial={{ x: 300, opacity: 0 }}
@@ -172,7 +172,7 @@ const SectionOne = () => {
                         })}
                     </motion.div>
                 </div>
-            </div>
+            </div> */}
             <div className="w-[90%] mx-auto border-b-2 mt-5"></div>
             <div className="w-[80%] mx-auto border-b-2 mt-5"></div>
             <div className="w-[70%] mx-auto border-b-2 mt-5"></div>
