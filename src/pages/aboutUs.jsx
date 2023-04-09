@@ -14,10 +14,12 @@ const AboutUs = () => {
     });
     const [cheefInfo, setCheefInfo] = useState(init);
 
-    useLayoutEffect(() => {window.scrollTo({top:0})}, []);
+    useLayoutEffect(() => {
+        window.scrollTo({ top: 0 });
+    }, []);
 
     return (
-        <div>
+        <div className="text-white">
             <SectionBanner />
             <div className="lg:h-[467px]">
                 <h1 className="lg:pt-[100px] text-center lg:text-4xl lg:font-medium">
@@ -78,10 +80,11 @@ const AboutUs = () => {
                 </div>
             </div>
             <div className="lg:max-w-[1100px] lg:mx-auto  lg:h-[538px]">
-                <h1 className="text-4xl">Our Cheefs & Staff</h1>
+                <h1 className="text-4xl ">Our Cheefs & Staff</h1>
                 <Swiper
                     initialSlide={(cheefInfo.length + 1) / 2 - 1}
                     effect={"coverflow"}
+                    grabCursor={'true'}
                     centeredSlides={true}
                     slidesPerView={"auto"}
                     coverflowEffect={{

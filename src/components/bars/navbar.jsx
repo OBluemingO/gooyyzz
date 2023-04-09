@@ -6,20 +6,36 @@ import { useNavigate } from "react-router-dom";
 const Navbar = () => {
     const navigate = useNavigate();
     const handleChangeRoute = (e) => {
-        if(e.target.textContent.toLowerCase() == 'home') navigate(`/`)
-        else navigate(`${e.target.textContent.toLowerCase()}`)
-    }   
+        if (["home", "ultimate"].includes(e.target.textContent.toLowerCase()))
+            navigate(`/`);
+        else navigate(`${e.target.textContent.toLowerCase()}`);
+    };
 
     return (
-        <div className="z-[300] bg-light-purple text-white flex justify-around items-center fixed w-full h-full max-w-[1440px] lg:max-h-[130px]">
-            <div className="flex gap-20">
-                <div className="text-2xl" onClick={handleChangeRoute}>Home</div>
-                <div className="text-2xl" onClick={handleChangeRoute}>Shop</div>
+        <div className="z-[300] bg-light-purple text-white flex justify-between items-center fixed w-full h-full max-w-[1440px] max-h-[100px] lg:max-h-[130px]">
+            <div className="flex gap-20 lg:ml-[30px]">
+                <div
+                    className="text-2xl cursor-pointer"
+                    onClick={handleChangeRoute}
+                >
+                    Home
+                </div>
+                <div
+                    className="text-2xl cursor-pointer"
+                    onClick={handleChangeRoute}
+                >
+                    Shop
+                </div>
             </div>
             <div className="flex items-center">
                 <div className="flex gap-10">
-                    <div className="text-2xl">Categories</div>
-                    <div className="text-2xl" onClick={handleChangeRoute}>AboutUs</div>
+                    <div className="text-2xl cursor-pointer">Categories</div>
+                    <div
+                        className="text-2xl cursor-pointer"
+                        onClick={handleChangeRoute}
+                    >
+                        AboutUs
+                    </div>
                 </div>
                 <div className="flex justify-center gap-5 lg:w-[150px]">
                     <div className="">
@@ -30,7 +46,12 @@ const Navbar = () => {
                     </div>
                 </div>
             </div>
-            <div className="font-light absolute left-1/2 -translate-x-1/2 text-5xl">ULTIMATE</div>
+            <div
+                className="hidden md:block font-light absolute left-1/2 -translate-x-1/2 text-5xl"
+                onClick={handleChangeRoute}
+            >
+                ULTIMATE
+            </div>
             <div className="border-b-[1px] w-full absolute bottom-0"></div>
         </div>
     );

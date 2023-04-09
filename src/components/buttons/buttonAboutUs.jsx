@@ -4,7 +4,7 @@ const buttonAboutUs = ({ children }) => {
     return (
         <div
             className="lg:w-[190px] font-medium lg:h-[48px]
-          text-white flex items-center justify-center bg-[#666666]"
+          text-white flex items-center justify-center bg-[#666666] cursor-pointer"
         >
             {children}
         </div>

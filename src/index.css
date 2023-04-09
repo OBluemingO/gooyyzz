@@ -9,6 +9,7 @@
 
     body {
         background-color: #5f60b9;
-        cursor: none !important;
+        /* cursor: none !important; */
+        user-select: none;
     }
 }

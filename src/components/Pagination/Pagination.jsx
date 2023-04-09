@@ -9,7 +9,6 @@ const Pagination = ({
     currentPage,
     pageSize,
 }) => {
-
     const paginationRange = usePagination({
         currentPage,
         totalCount,
@@ -32,13 +31,13 @@ const Pagination = ({
             <li
                 className={clsx(
                     { hidden: currentPage === 1 },
-                    "px-3 h-8 text-center mx-1 text-black flex box-border items-center tracking-tighter rounded-full leading-5 text-sm min-w-8 selection:bg-slate-500"
+                    "cursor-pointer px-3 h-8 text-center mx-1 text-black flex box-border items-center tracking-tighter rounded-full leading-5 text-sm min-w-8 selection:bg-slate-500"
                 )}
                 onClick={onPrevious}
             >
                 <div className="relative rotate-[-135deg] -translate-x-2/4 before:content-[''] before:inline-block before:w-[0.4em] before:h-[0.4em] before:border-r-[0.12em] bbefore:order-r-[rgba(0,0,0,0.87)] before:border-t-[0.12em] bbefore:order-t-[rgba(0,0,0,0.87)] before:border-solid" />
             </li>
-            {paginationRange.map((pageNumber,index) => {
+            {paginationRange.map((pageNumber, index) => {
                 // If the pageItem is a DOT, render the DOTS unicode character
                 if (pageNumber === DOTS) {
                     return (
@@ -46,7 +45,7 @@ const Pagination = ({
                             // className="pagination-item dots"
                             key={`dot-${pageNumber}-${index}`}
                             className={
-                                "px-3 h-8 text-center mx-1 text-black flex box-border items-center tracking-tighter rounded-full leading-5 text-sm min-w-8 selection:bg-slate-500"
+                                "cursor-pointer px-3 h-8 text-center mx-1 text-black flex box-border items-center tracking-tighter rounded-full leading-5 text-sm min-w-8 selection:bg-slate-500"
                             }
                         >
                             &#8230;
@@ -67,7 +66,7 @@ const Pagination = ({
                                 [`bg-gray-500 text-white`]:
                                     pageNumber === currentPage,
                             },
-                            "px-3 h-8 text-center mx-1  flex box-border items-center tracking-tighter rounded-full leading-5 text-sm min-w-8 selection:bg-slate-500"
+                            "cursor-pointer px-3 h-8 text-center mx-1  flex box-border items-center tracking-tighter rounded-full leading-5 text-sm min-w-8 selection:bg-slate-500"
                         )}
                         onClick={() => onPageChange(pageNumber)}
                     >
@@ -79,11 +78,11 @@ const Pagination = ({
             <li
                 className={clsx(
                     { hidden: currentPage === lastPage },
-                    "px-3 h-8 text-center mx-1 text-black flex box-border items-center tracking-tighter rounded-full leading-5 text-sm min-w-8 selection:bg-slate-500"
+                    "cursor-pointer px-3 h-8 text-center mx-1 text-black flex box-border items-center tracking-tighter rounded-full leading-5 text-sm min-w-8 selection:bg-slate-500"
                 )}
                 onClick={onNext}
             >
-                <div className="relative rotate-45 before:content-[''] before:inline-block before:w-[0.4em] before:h-[0.4em] before:border-r-[0.12em] bbefore:order-r-[rgba(0,0,0,0.87)] before:border-t-[0.12em] bbefore:order-t-[rgba(0,0,0,0.87)] before:border-solid" />
+                <div className="cursor-pointer relative rotate-45 before:content-[''] before:inline-block before:w-[0.4em] before:h-[0.4em] before:border-r-[0.12em] bbefore:order-r-[rgba(0,0,0,0.87)] before:border-t-[0.12em] bbefore:order-t-[rgba(0,0,0,0.87)] before:border-solid" />
             </li>
         </ul>
     );

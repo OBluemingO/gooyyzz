@@ -28,22 +28,25 @@ const ContactUs = () => {
         });
 
     return (
-        <div className="w-full h-screen relative lg:max-h-[798px] lg:max-w-[1440px] mx-auto lg:flex lg:mt-[50px]">
-            <div className="w-[50%] text-white flex flex-col items-center pt-[20px] overflow-hidden">
-                <h1 className="text-8xl ">
+        <div className="w-full lg:h-screen relative lg:max-h-[798px] lg:max-w-[1440px] mx-auto flex mt-[60px]">
+            <div className="w-[50%] text-white flex flex-col items-center pt-[20px] md:pb-[120px] lg:pb-0 overflow-hidden">
+                <h1 className="md:text-6xl lg:text-8xl ">
                     we'd love to
                     <br /> hear from you
                 </h1>
-                <div className="flex lg:pt-[100px]">
-                    <div className="border-white border-[2px] lg:w-[300px] lg:h-[300px] rounded-full"></div>
-                    <div className="border-white border-[2px] lg:w-[300px] lg:h-[300px] rounded-full  border-dashed -ml-[135px]"></div>
-                    <div className="border-white border-[2px] lg:w-[300px] lg:h-[300px] rounded-full -ml-[135px]"></div>
+                <div className="flex md:pt-[50px] lg:pt-[100px] justify-center w-full md:h-auto lg:h-full">
+                    <div className="border-white border-[2px] md:w-[200px] md:h-[200px] lg:w-[40%] lg:h-[60%] rounded-full"></div>
+                    <div className="border-white border-[2px] md:w-[200px] md:h-[200px] lg:w-[40%] lg:h-[60%] rounded-full  border-dashed -ml-[135px]"></div>
+                    <div className="border-white border-[2px] md:w-[200px] md:h-[200px] lg:w-[40%] lg:h-[60%] rounded-full -ml-[135px]"></div>
                 </div>
-                <div className="absolute lg:bottom-[30px]">
-                  <p className="capitalize">privacy policy • modern day statement social impact statement</p>
+                <div className="absolute md:bottom-[30px]">
+                    <p className="capitalize">
+                        privacy policy • modern day statement social impact
+                        statement
+                    </p>
                 </div>
             </div>
-            <div className="w-[50%] flex flex-col justify-center items-center text-white relative ">
+            <div className="w-[50%] flex flex-col md:justify-center items-center text-white relative ">
                 <form
                     onSubmit={handleSubmit}
                     className="flex flex-wrap items-center lg:gap-y-[40px] gap-[20px] justify-center"
@@ -181,7 +184,7 @@ const ContactUs = () => {
                         </button>
                     </div>
                 </form>
-                <div className="flex lg:gap-x-[10px] absolute lg:bottom-[30px] lg:right-0 text-white">
+                <div className="flex lg:gap-x-[10px] absolute md:bottom-[30px] right-[5%] text-white">
                     <p>phayuphat118@gmail.com</p>
                     <p>instagram</p>
                     <p>facebook</p>
@@ -192,4 +195,4 @@ const ContactUs = () => {
     );
 };
 
-export default ContactUs ;
+export default ContactUs;

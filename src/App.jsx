@@ -16,36 +16,40 @@ function App() {
     const {
         cursor,
         cursorDown,
-        pointer: { x, y }
+        pointer: { x, y },
     } = useContext(Context);
 
     return (
         <div className="bg-light-purple max-w-[1440px] mx-auto">
             <BrowserRouter>
-            <Navbar />
-            <motion.div
-                className="w-[50px] h-[50px] rounded-full bg-[#fd7702] fixed z-[500] pointer-events-none"
-                ref={ref}
-                layout
-                animate={{
-                    x,
-                    y,
-                    height: cursor ? "100px" : cursorDown ? "15px" : "50px",
-                    width: cursor ? "100px" : cursorDown ? "50px" : "50px",
-                }}
-                transition={{
-                    type: "spring",
-                    stiffness: 80,
-                    damping: 15,
-                }}
-            ></motion.div>
+                <Navbar />
+                {/* custom cursor */}
+                {/* <motion.div
+                    className="w-[50px] h-[50px] rounded-full bg-[#fd7702] fixed z-[500] pointer-events-none"
+                    ref={ref}
+                    layout
+                    animate={{
+                        x,
+                        y,
+                        height: cursor ? "100px" : cursorDown ? "15px" : "50px",
+                        width: cursor ? "100px" : cursorDown ? "50px" : "50px",
+                    }}
+                    transition={{
+                        type: "spring",
+                        stiffness: 80,
+                        damping: 15,
+                    }}
+                /> */}
                 <Routes>
                     <Route index element={<Home />} />
                     <Route path="/shop" element={<Shop />} />
-                    <Route path="/shop/:categorie/:productId" element={<ProductDetail />} />
+                    <Route
+                        path="/shop/:categorie/:productId"
+                        element={<ProductDetail />}
+                    />
                     <Route path="/aboutus" element={<AboutUs />} />
                 </Routes>
-            <ContactUs />
+                <ContactUs />
             </BrowserRouter>
         </div>
     );
