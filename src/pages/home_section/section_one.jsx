@@ -12,21 +12,7 @@ const SectionOne = () => {
         `.split("");
     }, []);
 
-    const textRef = useRef(null);
     const heroRef = useRef(null);
-
-    useEffect(() => {
-        const { current: text } = textRef;
-        // const { current: hero } = heroRef;
-        text.style = "-webkit-text-stroke: 1px white";
-
-        // const handleResize = () => {
-        //     hero.style.height = `${window.innerHeight}px`;
-        // };
-        // window.addEventListener("resize", handleResize);
-
-        // return () => window.removeEventListener("resize", handleResize);
-    }, []);
 
     return (
         <>
@@ -38,13 +24,17 @@ const SectionOne = () => {
                     transition={{ type: "spring", duration: 1.5, delay: 1 }}
                 >
                     <span className="text-white">GOOZ</span>
-                    <span className="text-light-purple" ref={textRef}>
+                    <span
+                        className="text-light-purple"
+                        style={{ "-webkit-text-stroke": `1px white` }}
+                    >
                         YYZZ
                     </span>
                 </motion.div>
-                <div className="flex md:h-full w-full md:relative lg:static items-end md:pt-20 lg:pt-0 lg:flex-row md:justify-around ">
+
+                <div className="flex md:h-full w-full md:flex-col md:justify-end lg:items-end lg:pt-0 lg:flex-row lg:justify-around ">
                     <motion.div
-                        className="w-[530px] lg:h-full hidden lg:block"
+                        className="md:ml-[50%] lg:ml-0 w-[530px] h-full"
                         initial={{ x: 300, opacity: 0 }}
                         animate={{ x: 0, opacity: 1 }}
                         transition={{
@@ -60,9 +50,71 @@ const SectionOne = () => {
                         </p>
                         <ButtonBasic />
                     </motion.div>
-                    <div className="hidden w-[300px] h-[300px] lg:flex justify-center items-center rounded-[50%]">
+                    <div className="flex lg:hidden">
+                        {Array(3)
+                            .fill(null)
+                            .map((el, index) => {
+                                return (
+                                    <div
+                                        key={keysID()}
+                                        className="w-[300px] h-[300px] flex justify-center items-center rounded-[50%]"
+                                    >
+                                        <motion.div
+                                            className="hidden lg:block w-full h-full z-50 scale-150 translate-x-2/4 -translate-y-5"
+                                            initial={{
+                                                x: -300,
+                                                y: -50,
+                                                scale: 0.8,
+                                                opacity: 0,
+                                            }}
+                                            animate={{
+                                                x: 75,
+                                                y: -50,
+                                                scale: 1.5,
+                                                opacity: 1,
+                                            }}
+                                            transition={{
+                                                ease: "circOut",
+                                                duration: 0.9,
+                                                delay: 0.5,
+                                            }}
+                                        >
+                                            <img
+                                                src={HeroSecond}
+                                                alt="hero_home_second"
+                                            />
+                                        </motion.div>
+                                        <motion.div
+                                            className="w-[200px] h-[200px]  animate-spin-slow relative"
+                                            initial={{ opacity: 0 }}
+                                            animate={{ opacity: 1 }}
+                                            transition={{
+                                                ease: "anticipate",
+                                                duration: 2,
+                                                delay: 0.5,
+                                            }}
+                                        >
+                                            {textMemo.map((el, index) => {
+                                                return (
+                                                    <CircleText
+                                                        char={el}
+                                                        index={index}
+                                                        key={keysID()}
+                                                        deg={`rotate(${
+                                                            index * 9
+                                                        }deg)`}
+                                                    />
+                                                );
+                                            })}
+                                        </motion.div>
+                                    </div>
+                                );
+                            })}
+                    </div>
+
+                    <div className="w-[300px] h-[300px] flex justify-center items-center rounded-[50%]">
                         <motion.div
-                            className="w-full h-full z-50 scale-150 translate-x-2/4 -translate-y-5"
+                            className="hidden lg:block w-full h-full z-50 scale-150 translate-x-2/4 -translate-y-5"
                             initial={{
                                 x: -300,
                                 y: -50,
@@ -79,7 +131,7 @@ const SectionOne = () => {
                             <img src={HeroSecond} alt="hero_home_second" />
                         </motion.div>
                         <motion.div
-                            className="w-[200px] h-[200px] animate-spin-slow relative"
+                            className="w-[200px] h-[200px]  animate-spin-slow relative"
                             initial={{ opacity: 0 }}
                             animate={{ opacity: 1 }}
                             transition={{
@@ -101,7 +153,10 @@ const SectionOne = () => {
                         </motion.div>
                     </div>
                     <motion.div
-                        className="absolute md:-bottom-[30%]  lg:h-auto z-[100] md:flex md:items-end lg:grid lg:place-items-center lg:top-0 left-0 overflow-hidden md:w-7/12 lg:w-full lg:max-h-[1080px]"
+                        className="absolute md:-bottom-[30%] lg:h-auto z-[100] md:flex md:items-end
+                        lg:grid lg:place-items-center lg:top-0 left-0 overflow-hidden md:w-7/12
+                        lg:w-full lg:max-h-[1080px]
+                        "
                         ref={heroRef}
                         initial={{ y: 1000, scale: 0 }}
                         animate={{ y: 0, scale: 1 }}
