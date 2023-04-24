@@ -12,9 +12,9 @@ const Home = () => {
     return (
         <div className="overflow-x-hidden w-full h-full">
             <SectionOne />
-            {/* <SectionSecond />
+            <SectionSecond />
             <SectionThrid />
-            <SectionFour /> */}
+            {/* <SectionFour /> */}
         </div>
     );
 };

@@ -174,7 +174,6 @@ const ContactUs = () => {
                             type="submit"
                             className="
                         flex items-center
-                        cursor-none
                         relative transition-all w-min-content
                         before:w-0 before:h-[1px] before:absolute before:bottom-0 before:right-0 before:bg-white before:transition-all before:duration-500
                         hover:before:w-full hover:before:left-0 hover:before:bg-white

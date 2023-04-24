@@ -34,7 +34,7 @@ const SectionOne = () => {
 
                 <div className="flex md:h-full w-full md:flex-col md:justify-end lg:items-end lg:pt-0 lg:flex-row lg:justify-around ">
                     <motion.div
-                        className="md:ml-[50%] lg:ml-0 w-[530px] h-full"
+                        className="md:ml-[50%] lg:ml-0 w-[530px] h-full z-[5000]"
                         initial={{ x: 300, opacity: 0 }}
                         animate={{ x: 0, opacity: 1 }}
                         transition={{
@@ -48,7 +48,7 @@ const SectionOne = () => {
                             apparel and textile sector is the 4th biggest in the
                             world.
                         </p>
-                        <ButtonBasic />
+                        <ButtonBasic path={'/shop'}>Show Now</ButtonBasic>
                     </motion.div>
                     <div className="flex lg:hidden">
                         {Array(3)

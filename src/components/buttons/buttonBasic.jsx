@@ -2,10 +2,10 @@ import { BsFillArrowRightCircleFill } from "react-icons/bs";
 import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
 
-const Buttonbasic = () => {
+const Buttonbasic = ({ children, path }) => {
     const navigate = useNavigate();
     const handleNavigateClick = () => {
-        navigate("/shop");
+        navigate(path);
     };
     return (
         <motion.div
@@ -18,7 +18,7 @@ const Buttonbasic = () => {
             whileTap={{ scale: 1 }}
             onClick={handleNavigateClick}
         >
-            <p className="font-semibold text-2xl">SHOP NOW</p>
+            <p className="font-semibold text-2xl">{children}</p>
             <BsFillArrowRightCircleFill size={20} />
         </motion.div>
     );
