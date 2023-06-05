@@ -7,8 +7,8 @@ const ButtonProductlist = ({ name, total, active, index, callBackButtonActive },
     return (
         <div
             className={clsx(
-                { "text-white": active, "text-black": !active },
-                "lg:h-full lg:w-1/4 p-4 text-center bg-gray-400  rounded cursor-pointer"
+                { "text-light-purple": active, "text-black": !active },
+                "lg:h-full lg:w-1/4 p-4 text-center bg-white  font-semibold rounded cursor-pointer"
             )}
             onClick={handleClick}
         >

@@ -1,5 +1,5 @@
 import { MdFavoriteBorder } from "react-icons/md";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 
 const ProductListCard = ({
     item_name_string,
@@ -11,15 +11,20 @@ const ProductListCard = ({
     stock_product_num,
     categorie_string,
     order_num,
+    total=24
 }) => {
     const navigate = useNavigate();
+    const location = useLocation()
     const handleNavigate = () => {
-        navigate({ pathname: `/shop/${categorie_string}/${item_name_string}_${order_num}` });
+        if (location.pathname.split("/").length > 1)
+          window.scrollTo({ behavior: "smooth", left: 0, top: 0 });
+
+        navigate({ pathname: `/shop/${categorie_string}/${item_name_string}_${order_num}`,search:`total=${total}` });
     };
 
     return (
         <div
-            className="w-full h-full bg-gray-400 rounded-[10px] overflow-hidden"
+            className="w-full h-full bg-white rounded-[10px] overflow-hidden"
             onClick={handleNavigate}
         >
             <div className="relative wrapper-image h-[47%] overflow-hidden">
@@ -28,14 +33,14 @@ const ProductListCard = ({
                 </div>
                 <img
                     className="object-cover w-full h-full object-center"
-                    src="https://picsum.photos/500/500"
+                    src="https://picsum.photos/1000/1000"
                     alt="mock-image"
                 />
             </div>
-            <div className="wrapper-detail-image h-[53%] lg:p-7">
+            <div className="wrapper-detail-image h-[53%] lg:p-7 text-black">
                 <div className="flex flex-col">
                     <p className="text-right m-0 p-0">$80.00</p>
-                    <h2 className="text-2xl m-0 p-0">Beef Burger</h2>
+                    <h2 className="text-2xl m-0 p-0">{item_name_string}_{order_num}</h2>
                 </div>
                 <div>
                     <p className="line-clamp-2 mt-3 lg:mb-[34px]">
@@ -48,7 +53,7 @@ const ProductListCard = ({
                     </p>
                 </div>
                 <div className="flex lg:gap-[29px]">
-                    <button className="border-none uppercase text-white py-2 px-7 rounded text-center bg-slate-500">
+                    <button className="border-none uppercase text-light-purple py-2 px-7 rounded text-center bg-slate-200 font-semibold">
                         Order Now
                     </button>
                 </div>

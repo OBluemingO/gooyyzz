@@ -177,12 +177,12 @@ const SectionSecond = () => {
                     start date - 1 Mar 2023 - end date - 31 Mar 2023 - 50% off -{" "}
                 </ParallaxText>
             </section>
-            <div className="flex flex-grow border-2 border-black">
+            <div className="flex flex-grow ">
                 {productData.map((el, index) => {
                     if (index != currentProduct) return null;
                     return (
                         <div className="flex"  key={`section_second_home-${index}`}>
-                            <div className="my-auto justify-center flex flex-col gap-4 items-start border-2 w-[400px] h-2/3">
+                            <div className="my-auto justify-center flex flex-col gap-4 items-start  w-[400px] h-2/3">
                                 <h1 className="text-7xl font-bold text-white ">
                                     {el.name}
                                 </h1>
@@ -192,7 +192,7 @@ const SectionSecond = () => {
                                 <Buttonbasic path={"/"}>Order Now</Buttonbasic>
                                 <div></div>
                             </div>
-                            <div className="flex-grow border-2 grid place-items-center">
+                            <div className="grid place-items-center">
                                 <img
                                     className="aspect-square"
                                     src={
